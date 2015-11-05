@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="../static/css/main.css" media="screen" title="no title" charset="utf-8">
   </head>
   <body>
-    <h1>APK list</h1>
+    <h1>APK List</h1>
     <table id="racetimes">
       <tr id="firstrow"><th>apk名称</th><th>大小</th><th>时间</th><th>描述</th></tr>
       {% for apk in apklist %}
-      <tr><td><a href="/apk/{{apk.name}}">{{apk.name}}</a></td><td>{{apk.size}}</td><td>{{apk.ctime}}</td><td>修复bug</td></tr>
+      <tr><td><a href="/apk/{{apk.name}}">{{apk.name}}</a></td><td>{{apk.size}}</td><td>{{apk.ctime}}</td><td>......</td></tr>
       {% endfor %}
     </table>
   </body>
