@@ -6,18 +6,12 @@ from flask import send_from_directory
 from flask import render_template
 import os, time, stat
 from datetime import datetime
+from models import FileInfo
 
 app = Flask(__name__)
 
 dirpath = os.path.join(app.root_path,'upload')
 
-class FileInfo(object):
-    """include file name, path, size, ctime"""
-    def __init__(self, name, path, size, ctime):
-        self.name = name
-        self.path = path
-        self.size = size
-        self.ctime = ctime
 
 def compare(file1, file2):
     stat1 = os.stat(os.path.join(dirpath,file1))
