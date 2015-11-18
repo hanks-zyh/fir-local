@@ -9,6 +9,7 @@ table {border-collapse: collapse;  width: 100%; margin: 0 auto 5rem;}
 th, td { padding: 1.5rem; font-size: 1.3rem; }
 
 tr {background: hsl(50, 50%, 80%); }
+td {text-align: left;}
 
 tr, td { transition: .2s ease-in; }
 
@@ -16,7 +17,7 @@ tr:first-child {background: hsla(12, 100%, 40%, 0.5); }
 
 tr:nth-child(even) { background: hsla(50, 50%, 80%, 0.7); }
 
-td:empty {background: hsla(50, 25%, 60%, 0.7); }
+td:empty {background: hsla(50, 25%, 60%, 0.7);}
 
 tr:hover:not(#firstrow), tr:hover td:empty {background: #ff0; pointer-events: visible;}
 tr:hover:not(#firstrow) { transform:  font-weight: 700; box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.5);}
