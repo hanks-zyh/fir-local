@@ -25,23 +25,26 @@ class FileUtil(object):
         for f in filelist:
             if  os.path.splitext(f)[1] =='.apk':
                 path = os.path.join(dirpath,f)
-                file_stat = os.stat(path)
-                size = '%.2f MB' % (float(file_stat.st_size)/1024/1024)
-                ctime = datetime.fromtimestamp(file_stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
-                fileinfo = FileInfo(f, path, size, ctime)
+                fileinfo = FileInfo(path)
                 apklist.append(fileinfo)
         return apklist
 
 
 class FileInfo(object):
     """
-    include file name, path, size, ctime
+    include file name, path, size, ctime, verisonname, versioncode, packagename, description
     """
-    def __init__(self, name, path, size, ctime):
-        self.name = name
+    def __init__(self, path):
         self.path = path
-        self.size = size
-        self.ctime = ctime
+        self.name = os.path.split(path)[1]
+        file_stat = os.stat(path)
+        self.size = '%.2f MB' % (float(file_stat.st_size)/1024/1024)
+        self.ctime = datetime.fromtimestamp(file_stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
+        self.versionname = '1.0'
+        self.versioncode = 1
+        self.packagename = ''
+        self.description = ''
+
 
     @staticmethod
     def compare(file1, file2):
@@ -54,10 +57,3 @@ class FileInfo(object):
             return 1
         else:
             return 0
-
-
-class TableItem(object):
-    """descripte a tableitem in table"""
-    def __init(self,fileinfo,description):
-        self.fileinfo = fileinfo
-        self.description = description
