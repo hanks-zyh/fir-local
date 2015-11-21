@@ -15,6 +15,10 @@ def index():
     print apklist
     return render_template('index.html', apklist=apklist)
 
+@main.route('/login')
+def login():
+    return render_template('login.html')
+
 @main.route('/edit/tableitem/<int:id>')
 def update_tableitem(id):
     pass
@@ -22,4 +26,3 @@ def update_tableitem(id):
 @main.route('/apk/<path:filename>')
 def download(filename):
     return send_from_directory(FileUtil.get_upload_path() ,filename,as_attachment=True)
-
