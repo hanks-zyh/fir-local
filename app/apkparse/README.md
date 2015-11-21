@@ -5,6 +5,13 @@
    
 [androguard-url]: https://github.com/androguard/androguard
 
+### Dependence
+
+```
+sudo apt-get install swig
+sudo apt-get install m2crypto
+```
+
 ## Example:
 
 ```
