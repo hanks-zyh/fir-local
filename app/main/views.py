@@ -6,7 +6,7 @@ __author__ = 'hanks'
 from flask import Flask
 from flask import send_from_directory
 from flask import render_template
-from ..models import FileInfo, FileUtil, TableItem
+from ..models import FileInfo, FileUtil
 from . import main
 
 @main.route('/')
