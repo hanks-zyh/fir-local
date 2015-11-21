@@ -14,9 +14,7 @@
       <td><a href="/apk/{{apk.name}}">{{apk.name}}</a></td>
       <td>{{apk.size}}</td>
       <td>{{apk.ctime}}</td>
-      <td>
-        <input type="hidden" name="name" value="" />
-      </td>
+      <td>{{ apk.version_name }} , {{ apk.version_code }} , {{apk.package_name}}</td>
     </tr>
     {% endfor %}
   </table>

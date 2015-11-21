@@ -5,6 +5,7 @@ import os
 from flask import Flask
 import os, time, stat
 from datetime import datetime
+from apkparse.apk import APK
 
 app = Flask(__name__)
 
@@ -32,7 +33,7 @@ class FileUtil(object):
 
 class FileInfo(object):
     """
-    include file name, path, size, ctime, verisonname, versioncode, packagename, description
+    include file name, path, size, ctime, verison_name, version_code, package_name, description
     """
     def __init__(self, path):
         self.path = path
@@ -40,9 +41,11 @@ class FileInfo(object):
         file_stat = os.stat(path)
         self.size = '%.2f MB' % (float(file_stat.st_size)/1024/1024)
         self.ctime = datetime.fromtimestamp(file_stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
-        self.versionname = '1.0'
-        self.versioncode = 1
-        self.packagename = ''
+        apk = APK(path)
+        self.version_name = apk.get_androidversion_name()
+        self.version_code = apk.get_androidversion_code()
+        self.package_name = apk.package
+        self.min_sdk_version = apk.get_min_sdk_version()
         self.description = ''
 
 
