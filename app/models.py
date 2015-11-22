@@ -2,10 +2,11 @@
 # -*- coding:utf-8 -*-
 
 import os
-from flask import Flask
+from flask import Flask, url_for
 import os, time, stat
 from datetime import datetime
 from apkparse.apk import APK
+import qrcode
 
 app = Flask(__name__)
 
@@ -16,6 +17,10 @@ class FileUtil(object):
     @staticmethod
     def get_upload_path():
         return os.path.join(app.root_path,'upload')
+
+    @staticmethod
+    def get_qrcode_path():
+        return os.path.join(app.root_path,'static')
 
     @staticmethod
     def get_files():
@@ -48,6 +53,11 @@ class FileInfo(object):
         self.min_sdk_version = apk.get_min_sdk_version()
         self.description = ''
 
+    def qrcode(self, url):
+        img_path = FileUtil.get_qrcode_path()
+        img = qrcode.make(url)
+        img.save(img_path + "/q_url.png")
+        return url_for('static', filename='q_url.png')
 
     @staticmethod
     def compare(file1, file2):
