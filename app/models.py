@@ -35,6 +35,15 @@ class FileUtil(object):
                 apklist.append(fileinfo)
         return apklist
 
+    @staticmethod
+    def md5(str):
+        if isinstance(str, basestring):
+            import hashlib
+            m = hashlib.md5()
+            m.update(str)
+            return m.hexdigest()
+        else:
+            return ''
 
 class FileInfo(object):
     """
@@ -54,10 +63,13 @@ class FileInfo(object):
         self.description = ''
 
     def qrcode(self, url):
-        img_path = FileUtil.get_qrcode_path()
-        img = qrcode.make(url)
-        img.save(img_path + "/q_url.png")
-        return url_for('static', filename='q_url.png')
+        qrcode_path = FileUtil.get_qrcode_path()
+        img_name = FileUtil.md5(url) + ".png"
+        img_path = os.path.join(qrcode_path, img_name)
+        if not os.path.isfile(img_path):
+            img = qrcode.make(url)
+            img.save(img_path)
+        return url_for('static', filename=img_name)
 
     @staticmethod
     def compare(file1, file2):

@@ -1,4 +1,8 @@
 venv/
+
+#static qrcode.png
+app/static/*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
