@@ -23,12 +23,16 @@
       <td>{{apk.version_name}}</td>
       <td>{{apk.size}}</td>
       <td>{{apk.ctime}}</td>
-      <td><img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt="" width="250px" height="250px" /></td>
-      <td><a href="#description{{ loop.index }}" data-toggle="collapse" data-taget="#description{{ loop.index }}" data-parent="#racetimes">{{ loop.index }}版本号:{{ apk.version_code }} , 更多</a></td>
+      <td><img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt="" width="20px" height="20px" /></td>
+      <td><a href="#description{{ loop.index }}" data-toggle="collapse" data-taget="#description{{ loop.index }}" data-parent="#racetimes">版本号:{{ apk.version_code }} , 更多</a></td>
     </tr>
-     <tr><td colspan=7 style="padding: 0"><div class="panel-collapse collapse" id="description{{ loop.index}}" >Nihil anim keffiyeh helvetica, craft beer labore wes anderson
-     cred nesciunt sapiente ea proident. Ad vegan excepteur butcher
-     vice lomo.</div></td></tr>
+     <tr>
+       <td colspan=8 style="padding: 0">
+         <div class="panel-collapse collapse" id="description{{ loop.index}}" >
+         <img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt="" width="250px" height="250px" />
+         </div>
+       </td>
+     </tr>
     {% endfor %}
   </table>
 </div>
