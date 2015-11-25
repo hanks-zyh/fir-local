@@ -51,7 +51,7 @@ class FileInfo(object):
     """
     def __init__(self, path):
         self.path = path
-        self.name = os.path.split(path)[1]
+        self.name = os.path.split(path)[1].decode('utf-8')
         file_stat = os.stat(path)
         self.size = '%.2f MB' % (float(file_stat.st_size)/1024/1024)
         self.ctime = datetime.fromtimestamp(file_stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
