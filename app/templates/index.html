@@ -24,7 +24,7 @@
       <td>{{apk.size}}</td>
       <td>{{apk.ctime}}</td>
       <td style="width:50px"><img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt="" width="50px" height="50px" /></td>
-      <td style="width:100px"><a href="#description{{ loop.index }}" data-toggle="collapse" data-taget="#description{{ loop.index }}" data-parent="#racetimes">版本号:{{ apk.version_code }} , 更多</a></td>
+      <td style="width:150px"><a href="#description{{ loop.index }}" data-toggle="collapse" data-taget="#description{{ loop.index }}" data-parent="#racetimes">版本号:{{ apk.version_code }} , 更多</a></td>
     </tr>
      <tr>
        <td colspan=8 style="padding: 0">
