@@ -25,7 +25,6 @@ def update_tableitem(id):
 
 @main.route('/apk/<path:filename>')
 def download(filename):
-    attachment_meta = AttachmentMeta(filename)
-    if not attachment_meta:
+    if not filename:
         flask.abort(404)
-    return send_from_directory(FileUtil.get_upload_path() ,filename=attachment_meta.filepath)
+    return send_from_directory(FileUtil.get_upload_path() ,filename=filename)
