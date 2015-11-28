@@ -2,8 +2,6 @@
 {% block title %}Fir{% endblock %}
 {% block content %}
     <div class="container">
-
-
         <table id="racetimes">
             <tr id="firstrow">
                 <th>图标</th>
@@ -28,7 +26,9 @@
                     <td style="width:50px"><img
                             src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt=""
                             width="20px" height="20px" data-toggle="popover" data-placement="top" data-container="body"
-                             id="qr{{ loop.index }}" onmouseover="showQrcode({{ loop.index }},'{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True)) }}' )" />
+                            data-trigger="hover"
+                            id="qr{{ loop.index }}"
+                            onmouseover="showQrcode({{ loop.index }},'{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True)) }}' )"/>
                     </td>
                     <td style="width:100px"><a href="#description{{ loop.index }}" data-toggle="collapse"
                                                data-taget="#description{{ loop.index }}"
