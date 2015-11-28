@@ -25,10 +25,9 @@
                     <td>{{ apk.ctime }}</td>
                     <td style="width:50px"><img
                             src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt=""
-                            width="20px" height="20px" data-toggle="popover" data-placement="top" data-container="body"
-                            data-trigger="hover"
+                            width="20px" height="20px"
                             id="qr{{ loop.index }}"
-                            onmouseover="showQrcode({{ loop.index }},'{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True)) }}' )"/>
+                            onmousemove="showQrcode({{ loop.index }},'{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True)) }}' )"/>
                     </td>
                     <td style="width:100px"><a href="#description{{ loop.index }}" data-toggle="collapse"
                                                data-taget="#description{{ loop.index }}"

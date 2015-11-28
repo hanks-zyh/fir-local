@@ -1,6 +1,7 @@
-/.idea
 venv/
 .idea/
+*.iml
+
 #static qrcode.png
 app/static/*.png
 
