@@ -1,39 +1,44 @@
 {% extends "base.html" %}
 {% block title %}Fir{% endblock %}
 {% block content %}
-<div class="container">
-  <table id="racetimes">
-    <tr id="firstrow">
-      <th>图标</th>
-      <th>文件</th>
-      <th>包名</th>
-      <th>版本</th>
-      <th>大小</th>
-      <th>时间</th>
-      <th>二维码</th>
-      <th>描述</th>
-    </tr>
-    {% for apk in apklist %}
-    <tr>
-      <td>
-        <img src="{{ url_for('static',filename='favicon.ico') }}" alt="" width="50px" height="50px" />
-      </td>
-      <td><a href="{{url_for('.download',filename=apk.name )}}">{{apk.name}}</a></td>
-      <td>{{apk.package_name}}</td>
-      <td>{{apk.version_name}}</td>
-      <td>{{apk.size}}</td>
-      <td>{{apk.ctime}}</td>
-      <td style="width:50px"><img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt="" width="50px" height="50px" /></td>
-      <td style="width:150px"><a href="#description{{ loop.index }}" data-toggle="collapse" data-taget="#description{{ loop.index }}" data-parent="#racetimes">版本号:{{ apk.version_code }} , 更多</a></td>
-    </tr>
-     <tr>
-       <td colspan=8 style="padding: 0">
-         <div class="panel-collapse collapse" id="description{{ loop.index}}" >
-         <img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt="" width="250px" height="250px" />
-         </div>
-       </td>
-     </tr>
-    {% endfor %}
-  </table>
-</div>
+    <div class="container">
+        <table id="racetimes">
+            <tr id="firstrow">
+                <th>图标</th>
+                <th>文件</th>
+                <th>包名</th>
+                <th>版本</th>
+                <th>大小</th>
+                <th>时间</th>
+                <th>二维码</th>
+                <th>描述</th>
+            </tr>
+            {% for apk in apklist %}
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static',filename='favicon.ico') }}" alt="" width="50px" height="50px"/>
+                    </td>
+                    <td><a href="{{ url_for('.download',filename=apk.name ) }}">{{ apk.name }}</a></td>
+                    <td>{{ apk.package_name }}</td>
+                    <td>{{ apk.version_name }}</td>
+                    <td>{{ apk.size }}</td>
+                    <td>{{ apk.ctime }}</td>
+                    <td style="width:50px"><img
+                            src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt=""
+                            width="50px" height="50px"/></td>
+                    <td style="width:100px"><a href="#description{{ loop.index }}" data-toggle="collapse"
+                                               data-taget="#description{{ loop.index }}"
+                                               data-parent="#racetimes">版本号:{{ apk.version_code }} , 更多</a></td>
+                </tr>
+                <tr>
+                    <td colspan=8 style="padding: 0">
+                        <div class="panel-collapse collapse" id="description{{ loop.index }}">
+                            <img src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt=""
+                                 width="250px" height="250px"/>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
