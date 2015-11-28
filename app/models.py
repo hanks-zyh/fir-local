@@ -10,17 +10,19 @@ import qrcode
 
 app = Flask(__name__)
 
+
 class FileUtil(object):
     """
     util class for file operator
     """
+
     @staticmethod
     def get_upload_path():
-        return os.path.join(app.root_path,'upload')
+        return os.path.join(app.root_path, 'upload')
 
     @staticmethod
     def get_qrcode_path():
-        return os.path.join(app.root_path,'static')
+        return os.path.join(app.root_path, 'static')
 
     @staticmethod
     def get_files():
@@ -29,8 +31,8 @@ class FileUtil(object):
         filelist = os.listdir(dirpath)
         filelist.sort(FileInfo.compare)
         for f in filelist:
-            if  os.path.splitext(f)[1] =='.apk':
-                path = os.path.join(dirpath,f)
+            if os.path.splitext(f)[1] == '.apk':
+                path = os.path.join(dirpath, f)
                 fileinfo = FileInfo(path)
                 apklist.append(fileinfo)
         return apklist
@@ -45,15 +47,17 @@ class FileUtil(object):
         else:
             return ''
 
+
 class FileInfo(object):
     """
     include file name, path, size, ctime, verison_name, version_code, package_name, description
     """
+
     def __init__(self, path):
         self.path = path
         self.name = os.path.split(path)[1].decode('utf-8')
         file_stat = os.stat(path)
-        self.size = '%.2f MB' % (float(file_stat.st_size)/1024/1024)
+        self.size = '%.2f MB' % (float(file_stat.st_size) / 1024 / 1024)
         self.ctime = datetime.fromtimestamp(file_stat.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
         apk = APK(path)
         self.version_name = apk.get_androidversion_name()
@@ -74,8 +78,8 @@ class FileInfo(object):
     @staticmethod
     def compare(file1, file2):
         dirpath = FileUtil.get_upload_path()
-        stat1 = os.stat(os.path.join(dirpath,file1))
-        stat2 = os.stat(os.path.join(dirpath,file2))
+        stat1 = os.stat(os.path.join(dirpath, file1))
+        stat2 = os.stat(os.path.join(dirpath, file2))
         if stat1.st_ctime > stat2.st_ctime:
             return -1
         elif stat1.st_ctime < stat2.st_ctime:
