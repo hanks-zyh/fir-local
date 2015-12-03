@@ -5,7 +5,7 @@ from apk import APK
 
 
 def test():
-    apk_path = "nsb.apk"
+    apk_path = "wan.ke.ji-V1.5-1500.apk"
     apkf = APK(apk_path)
     print apkf.cert_text
     print apkf.file_md5
@@ -35,8 +35,8 @@ def test():
     print apkf.get_providers()
     print apkf.get_permissions()
 
-    # print apkf.show()
-    # apkf.parse_icon(icon_path='/tmp')
+    print apkf.show()
+    apkf.parse_icon(icon_path='.')
 
 if __name__ == "__main__":
     test()

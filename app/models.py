@@ -4,6 +4,7 @@
 import os
 from flask import Flask, url_for
 import os, time, stat
+import zipfile
 from datetime import datetime
 from apkparse.apk import APK
 import qrcode
@@ -22,6 +23,10 @@ class FileUtil(object):
 
     @staticmethod
     def get_qrcode_path():
+        return os.path.join(app.root_path, 'static')
+
+    @staticmethod
+    def get_logo_path():
         return os.path.join(app.root_path, 'static')
 
     @staticmethod
@@ -47,6 +52,26 @@ class FileUtil(object):
         else:
             return ''
 
+    @staticmethod
+    def unzip_launcher(apk_path, target_name):
+        target = os.path.join(FileUtil.get_logo_path(), target_name)
+        if os.path.isfile(target):
+            return url_for('static', filename=target_name)
+
+        shell_line = 'aapt dump badging ' + apk_path + ' | grep application-icon'
+        tmp = os.popen(shell_line).readlines()
+        #  print tmp
+        result = ''
+        for line in tmp:
+            result = line.split("'")[1]
+        zip_file = zipfile.ZipFile(apk_path)
+        logo_path = result
+        f = open(target, "a")
+        f.write(zip_file.read(logo_path))
+        f.close()
+        zip_file.close()
+        return url_for('static', filename=target_name)
+
 
 class FileInfo(object):
     """
@@ -65,6 +90,7 @@ class FileInfo(object):
         self.package_name = apk.package
         self.min_sdk_version = apk.get_min_sdk_version()
         self.description = ''
+        self.logo = FileUtil.unzip_launcher(path, self.package_name + '.' + self.version_code + ".png")
 
     def qrcode(self, url):
         qrcode_path = FileUtil.get_qrcode_path()

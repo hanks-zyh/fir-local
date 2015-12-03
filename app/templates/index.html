@@ -16,10 +16,10 @@
             {% for apk in apklist %}
                 <tr>
                     <td>
-                        <img src="{{ url_for('static',filename='favicon.ico') }}" alt="" width="50px" height="50px"/>
+                        <img src="{{ apk.logo }}" alt="" width="50px" height="50px"/>
                     </td>
                     <td><a href="{{ url_for('.download',filename=apk.name ) }}">
-                        <marquee scrollAmount=2 width=100>{{ apk.name }}</marquee>
+                        {{ apk.name }}
                     </a></td>
                     <td>{{ apk.package_name }}</td>
                     <td>{{ apk.version_name }}</td>
