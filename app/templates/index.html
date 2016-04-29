@@ -15,17 +15,17 @@
             </tr>
             {% for apk in apklist %}
                 <tr>
-                    <td>
-                        <img src="{{ apk.logo }}" alt="" width="50px" height="50px"/>
+                    <td style="width:50px">
+                        <img src="http://gold.xitu.io/images/app/logo.png" alt="" width="50px" height="50px"/>
                     </td>
-                    <td><a href="{{ url_for('.download',filename=apk.name ) }}">
+                    <td style="width:150px"><a href="{{ url_for('.download',filename=apk.name ) }}">
                         {{ apk.name }}
                     </a></td>
-                    <td>{{ apk.package_name }}</td>
-                    <td>{{ apk.version_name }}</td>
-                    <td>{{ apk.size }}</td>
-                    <td>{{ apk.ctime }}</td>
-                    <td style="width:50px"><img
+                    <td style="width:90px">{{ apk.package_name }}</td>
+                    <td style="width:80px">{{ apk.version_name }}『{{ apk.version_code }}』</td>
+                    <td style="width:100px">{{ apk.size }}</td>
+                    <td style="width:150px">{{ apk.ctime }}</td>
+                    <td style="width:80px"><img
                             src="{{ apk.qrcode(url_for('.download',filename=apk.name, _external=True )) }}" alt=""
                             width="20px" height="20px"
                             id="qr{{ loop.index }}"
@@ -33,7 +33,7 @@
                     </td>
                     <td style="width:100px"><a href="#description{{ loop.index }}" data-toggle="collapse"
                                                data-taget="#description{{ loop.index }}"
-                                               data-parent="#racetimes">版本号:{{ apk.version_code }} , 更多</a>
+                                               data-parent="#racetimes">更多...</a>
                     </td>
                 </tr>
                 <tr>

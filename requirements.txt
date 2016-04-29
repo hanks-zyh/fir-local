@@ -5,7 +5,6 @@ Flask-Script==2.0.5
 itsdangerous==0.24
 Jinja2==2.8
 MarkupSafe==0.23
-PIL==1.1.7
 Pillow==3.0.0
 qrcode==5.1
 six==1.10.0
